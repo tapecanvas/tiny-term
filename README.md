@@ -17,7 +17,7 @@
 
 ## to-do:
 - [ ] work on output formatting
-- [ ] add command history (up and down keys) - need to rething movement keys (vim keys?)
+- [ ] add command history (up and down keys) - need to rethink movement keys (vim keys?)
 - [ ] scroll to cursor when typing next command (if output is too long to show cursor on first page)
 
 ## archive:
