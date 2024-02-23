@@ -1,9 +1,10 @@
 -- tiny-term 
 -- terminal emulator-ish
--- v0.0.1 
+-- v0.0.1
 -- by @tapecanvas
 
 my_string = ""
+old_string = ""
 output = ""
 current_dir = "/"
 scroll_pos = 1
@@ -39,6 +40,7 @@ function keyboard.code(code,value)
         output = handle:read("*a")
         handle:close()
       end
+      old_string = my_string ..  " -> " -- copy content of my_string to old_string
       my_string = "" -- clear my_string after executing the command
     end
     redraw()
@@ -77,7 +79,7 @@ function blink()
 
   function redraw()
     screen.clear()
-    local lines = textwrap(output, 20) -- split the output into lines of up to 20 characters
+    local lines = textwrap(old_string .. output, 20) -- show the last run command, then the output of the command, split the output into lines of up to 20 characters
     local line_count = 0
     for i = scroll_pos, scroll_pos + 10 do -- display 10 lines at a time
       if lines[i] then
