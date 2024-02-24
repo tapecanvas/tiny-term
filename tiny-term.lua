@@ -1,6 +1,6 @@
 -- tiny-term 
 -- terminal emulator-ish
--- v0.0.1
+-- v0.0.2
 -- by @tapecanvas
 
 my_string = ""
@@ -24,6 +24,8 @@ function keyboard.code(code,value)
     elseif code == "DOWN" then
       scroll_pos = scroll_pos + 1 -- down
     elseif code == "ENTER" then
+      -- reset scroll position to top when a new command is run
+      scroll_pos = 1
       if my_string:sub(1, 3) == "cd " then
         local new_dir = my_string:sub(4)
         local handle = io.popen("cd " .. current_dir .. " && cd " .. new_dir .. " && pwd")
@@ -42,6 +44,12 @@ function keyboard.code(code,value)
       end
       old_string = my_string ..  " -> " -- copy content of my_string to old_string
       my_string = "" -- clear my_string after executing the command
+    else
+      -- scroll to the cursor position when a printable key is pressed -- this stops arrow key scrolling from jumping to prompt
+      if code:match("%a") or code:match("%d") or code == "SPACE" then
+        local lines = textwrap(old_string .. output, 25)
+        scroll_pos = #lines + 1
+      end
     end
     redraw()
   end
@@ -54,11 +62,12 @@ function enc(n, delta)
   end
 end
 
+-- this is better
 function textwrap(text, len)
   local lines = {}
   local line = ""
-  for word in text:gmatch("%S+") do
-    if #line + #word <= len then
+  for word in text:gmatch("%S+[^%s]*") do
+    if #line + #word + 1 <= len then
       line = line .. (line == "" and "" or " ") .. word
     else
       table.insert(lines, line)
@@ -79,16 +88,16 @@ function blink()
 
   function redraw()
     screen.clear()
-    local lines = textwrap(old_string .. output, 20) -- show the last run command, then the output of the command, split the output into lines of up to 20 characters
+    local lines = textwrap(old_string .. output, 25) -- show the last run command, then the output of the command, split the output into lines of up to 20 characters
     local line_count = 0
     for i = scroll_pos, scroll_pos + 10 do -- display 10 lines at a time
       if lines[i] then
-        screen.move(10, 10 + 10 * line_count) -- move to the start of the next line
+        screen.move(5, 10 + 10 * line_count) -- move to the start of the next line
         screen.text(lines[i]) -- display the line
         line_count = line_count + 1
       end
     end
-    screen.move(10, 10 + 10 * line_count) -- move to the line just below the output text
+    screen.move(5, 10 + 10 * line_count) -- move to the line just below the output text
     screen.text("$ " .. my_string) -- display the current command being typed with a $ prompt
     if blink_on then
       screen.text("_") -- draw a blinking cursor
