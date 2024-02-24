@@ -3,7 +3,6 @@
  
 ![screenshot of script running](screenshot.png)
 
-
 ## tiny-term is a simple terminal emulator-ish script for norns 
 - the script opens with a prompt `>` and blinking cursor `_`
 - input from keyboard displays after the prompt `> cd home/we/dust_`
