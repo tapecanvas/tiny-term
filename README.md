@@ -1,7 +1,9 @@
 # tiny-term
  WIP - a super basic terminal emulator-ish script for norns
- 
+
 ![screenshot of script running](screenshot.png)
+- inspiration: "shell" from [hid-demo](https://github.com/okyeron/hid-demo/tree/master) by @okyeron
+- one step closer to making norns my ideal cyber deck
 
 ## tiny-term is a simple terminal emulator-ish script for norns 
 - the script opens with a prompt `$` and blinking cursor `_`
