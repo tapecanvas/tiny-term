@@ -14,7 +14,8 @@
 - k2 clears the screen
 	
 - there is currently very basic error handling, and no special key support
-- typical terminal applications will not be able to run ie: text editors, file managers, etc. Most of these will throw an error message and prevent execution / lock-up caused by trying to run them
+- typical terminal applications will not be able to run ie: text editors, file managers, etc.
+	- most of these _should_ throw an error message to prevent execution/prevent crashes, but i'm sure the blocked command list will grow with further testing
 
 ## features:
 - can run most shell commands that don't require user interaction and don't rely on specific terminal features.
