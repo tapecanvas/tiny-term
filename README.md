@@ -25,12 +25,14 @@
 	- File and directory operations: `ls`, `pwd`, `cd`, `cp`, `mv`, `rm`, `mkdir`, `rmdir`, etc.
 	- Text processing: `cat`, `more`, `less`, `head`, `tail`, `grep`, `sed`, `awk`, etc.
 	- System information: `date`, `uptime`, `who`, `uname`, etc.
-	- Network operations: `ping`, `netstat`, `curl`, `wget`, etc.
-	- Process management: `ps`, `kill`, `top`, etc. (note: `top` is a terminal-based program, but it can be used in batch mode, which doesn't require a terminal. For example, `top -b -n 1` runs `top` in batch mode and exits after one iteration.)
+	- Network operations: `ping`, `netstat`, `curl`, `wget`, etc. (note: if you run `ping` be sure to set the count flag to one `ping -c 1 8.8.8.8`  _tiny-term can not handle outputs that build upon themselves_
+	- Process management: `ps`, `kill`, `top`, etc. (note: `top` is a terminal-based program, but it can be used in batch mode, which doesn't require a terminal. For example, `top -b -n 1` runs `top` in batch mode and exits after one iteration.) 	
 - commands that you won't be able to run include terminal-based programs that require user interaction or rely on specific terminal features. Disallowed commands: `vi/vim`, `nano`, `less`, `more`, `htop`, `top` (in interactive mode), `ssh`, `tmux`, `clear`, etc.
 
 ## to-do:
-- test for edge case issues
+- [ ] left right arrow key = cursor movement
+- [ ] delete key functionality
+- [ ] investigate sometimes funky backspace = adds strings??
 
 ## archive: 
 - [x] add command history (up and down keys) - need to rethink movement keys or just use e2 for scroll
