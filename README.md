@@ -30,6 +30,7 @@
 - commands that you won't be able to run include terminal-based programs that require user interaction or rely on specific terminal features. Disallowed commands: `vi/vim`, `nano`, `less`, `more`, `htop`, `top` (in interactive mode), `ssh`, `tmux`, `clear`, etc.
 
 ## to-do:
+- [ ] [modifier keys](https://monome.org/docs/norns/reference/keyboard)
 - [ ] left right arrow key = cursor movement
 - [ ] delete key functionality
 - [ ] investigate sometimes funky backspace = adds strings??
