@@ -31,6 +31,7 @@
 
 ## to-do:
 - [ ] [modifier keys](https://monome.org/docs/norns/reference/keyboard)
+- [ ] custom help response
 - [ ] left right arrow key = cursor movement
 - [ ] delete key functionality
 - [ ] investigate sometimes funky backspace = adds strings??
